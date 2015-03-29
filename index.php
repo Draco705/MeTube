@@ -8,6 +8,7 @@
     <title> Welcome to MeTube! </title>
 </head>
 <body>
+<img src="images/metube.jpg">
 <?php
 echo "<h1 align='center'> Welcome to Metube! </h1>";
 ?>
