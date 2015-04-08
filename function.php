@@ -102,6 +102,7 @@ function update_info($email, $password1, $first, $last, $sex, $password3, $usern
 			return 1; 
 					
 		} 
+		
 
 	
 ?>

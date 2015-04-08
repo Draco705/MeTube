@@ -2,6 +2,7 @@
 <?php
 	session_start();
 	include_once "function.php";
+	
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,8 +24,27 @@ function saveDownload(id)
 </script>
 </head>
 
+
 <body>
-<p>Welcome <?php echo $_SESSION['username'];?></p>
+<h1>Welcome <?php echo $_SESSION['username'];?> </h1> 
+ 
+ 
+<form action="update.php" method="post">
+	<input type="submit" class="button"  VALUE = "Update Info" >
+</form></p>
+
+<br>
+
+<form action="message.php" method="post">
+	<input type="submit" class="button"  VALUE = "Send Message" >
+</form></p>
+
+<br>
+
+<form action="receive_msg.php" method="post">
+	<input type="submit" class="button"  VALUE = "Message Inbox" >
+</form></p>
+
 <a href='media_upload.php'  style="color:#FF9900;">Upload File</a>
 <div id='upload_result'>
 <?php 

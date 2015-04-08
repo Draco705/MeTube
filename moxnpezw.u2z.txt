@@ -1,0 +1,32 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   browse.php
+#	modified:   css/default.css
+#	modified:   function.php
+#	modified:   index.php
+#	modified:   media.php
+#	modified:   register.php
+#
+# Changes not staged for commit:
+#	modified:   create_table.sql
+#	modified:   index.php~
+#	modified:   js/jquery-latest.pack.js
+#	modified:   sql.php~
+#
+# Untracked files:
+#	function.php~
+#	grenade.mp3
+#	message.php
+#	metube.jpg
+#	receive_msg.php
+#	register.php~
+#	update.php
+#	uploads/SARANSH/
+#	uploads/saransht/
+#
+
