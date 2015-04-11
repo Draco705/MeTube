@@ -28,7 +28,7 @@ $name = $_SESSION['username'];
 		<td align="center"><h4> Subject </h4></td>
 		<td align="center"><h4> Message </h4></td>
 		<td align="center"><h4> From user </h4></td>
-		<td align="center"><h4> Time </h4></td>
+		<td align="center"><h4> Received on </h4></td>
 		<?php
 			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path
 			{ 

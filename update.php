@@ -9,6 +9,12 @@ session_start();
 
 include_once "function.php";
 
+
+if (isset($_SESSION['username']))
+	echo "Username available";
+else
+	header('Refresh :0;index.php');
+
 if(isset($_POST['submit'])) {
 	if( $_POST['password1'] != $_POST['password2']) {
 		$register_error = "Passwords don't match. Try again?";

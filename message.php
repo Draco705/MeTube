@@ -29,8 +29,8 @@ if(isset($_POST['submit'])) {
 
   Send to(username): <input type="text" name="sendto" required> <br>
   Subject: <input type="text" name="sub"> <br><br>
-  <textarea rows="5" cols="50" name="content">
-Enter your message here..</textarea> <br>
+  <textarea rows="5" cols="50" name="content" placeholder="Enter your message here..">
+</textarea> <br>
  <input name="submit" type="submit" value="Submit">
 </form>
 <br>

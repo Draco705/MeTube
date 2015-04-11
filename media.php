@@ -2,6 +2,8 @@
 <?php
 	session_start();
 	include_once "function.php";
+	
+	$username = $_SESSION['username'];
 ?>	
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,6 +14,7 @@
 </head>
 
 <body>
+	
 <?php
 if(isset($_GET['id'])) {
 	$query = "SELECT * FROM media WHERE mediaid='".$_GET['id']."'";
@@ -34,10 +37,7 @@ if(isset($_GET['id'])) {
 	{	
 ?>
 	<!-- <p>Viewing Video:<?php echo $result_row[2].$result_row[1];?></p> -->
-	<audio controls>
-  <source src="grenade.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+	
 	<p>Viewing Video:<?php echo $result_row[4];?></p>
 	      
     <object id="MediaPlayer" width=320 height=286 classid="CLSID:22D6f312-B0F6-11D0-94AB-0080C74C7E95" standby="Loading Windows Media Player components…" type="application/x-oleobject" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112">
@@ -51,22 +51,37 @@ Your browser does not support the audio element.
 
 <embed type="application/x-mplayer2" src="<?php echo $filepath;  ?>" name="MediaPlayer" width=320 height=240></embed>
 
-</object>
-
-          
-          
-          
-       
-              
+</object> 
+            
 <?php
 	}
 }
+ 
+
 else
 {
-?>
+	?>
 <meta http-equiv="refresh" content="0;url=browse.php">
+<?php
+ if(isset($_POST['submit'])) {
+	  //$path = $_GET['path'];
+	  $comment = $_POST['comment'];
+			$result = mysql_query("INSERT into comment values (NULL,'$comment','$username')");
+			//$row = mysql_fetch_row($result);
+			
+		}
+?>	
+
 <?php
 }
 ?>
+
+<h4> Comments </h4>
+<form method="post" action="media.php" > 
+<textarea rows="5" cols="50" name="comment" placeholder="Write your comments here..">
+</textarea> <br>
+<input value="submit" name="submit" type="submit" /> 
+</form>
+
 </body>
 </html>

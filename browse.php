@@ -23,8 +23,12 @@ function saveDownload(id)
 } 
 </script>
 </head>
-
-
+<?php
+if (isset($_SESSION['username']))
+{}
+	//echo "Username available";
+else
+	header('Refresh :0;index.php');?>
 <body>
 <h1>Welcome <?php echo $_SESSION['username'];?> </h1> 
  
@@ -37,6 +41,12 @@ function saveDownload(id)
 
 <form action="message.php" method="post">
 	<input type="submit" class="button"  VALUE = "Send Message" >
+</form></p>
+
+<br>
+
+<form action="logout.php" method="post">
+	<input type="submit" class="button"  VALUE = "Logout" >
 </form></p>
 
 <br>
@@ -55,22 +65,112 @@ function saveDownload(id)
 ?>
 </div>
 <br/><br/>
+
+<form action="browse.php" method="post">
+    Search:  <input type="text" name="search" style="width: 500px";>
+	<input name="submit" type="submit" value="Search"> <br><br>
+</form>
+
+ <div style="background:#339900;color:#FFFFFF; width:150px;">Uploaded Media</div> <br> 
+	
+	<form action="browse.php" method="post">
+	Category: <select name="dropdown">
+  <option value="all" selected="selected"> All </option>
+  <option value="audio">Audio</option>
+  <option value="video">Video</option>
+  <option value="image">Image</option>
+  <option value="other">Other</option>
+</select>
+<input name="submit" type="submit" value="Submit">
+</form>
+
+
 <?php
 
-	$query = "SELECT * from media"; 
+if(isset($_POST['submit'])) {
+	
+	if(isset($_POST['search'])) {
+		$search = $_POST['search'];
+		if($search == ""){
+			$query = "SELECT * FROM media"; 
 	$result = mysql_query( $query );
 	if (!$result){
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
+	}
+	
+	else {
+	$query = "SELECT * FROM media WHERE title RLIKE '$search'"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+}
+	}
+	
+	else {
+		if($_POST['dropdown'] == "all") {
+		$query = "SELECT * FROM media"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+	}
+		
+	if($_POST['dropdown'] == "audio") {
+		$query = "SELECT * FROM media WHERE type RLIKE 'audio'"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+	}
+	
+	else if($_POST['dropdown'] == "video") {
+		$query = "SELECT * FROM media WHERE type RLIKE 'video'"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+	}
+	
+	else if($_POST['dropdown'] == "image") {
+		$query = "SELECT * FROM media WHERE type RLIKE 'image'"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+	}
+	
+	else if($_POST['dropdown'] == "other") {
+	$query = "SELECT * FROM media WHERE type NOT RLIKE 'image' AND type NOT RLIKE 'audio' AND type NOT RLIKE 'video'"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+	}
+	}
+}
+
+else {
+	$query = "SELECT * FROM media"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+}
 ?>
-    
-    <div style="background:#339900;color:#FFFFFF; width:150px;">Uploaded Media</div>
-	<table width="50%" cellpadding="0" cellspacing="0">
+
+
+    <table width="50%" cellpadding="0" cellspacing="0">
+	
+	<td><h4> id </h4></td>
+	<td><h4> Name </h4></td>
+	
 		<?php
 			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path
 			{ 
 				$mediaid = $result_row[3];
-				$filename = $result_row[0];
+				$titlename = $result_row[5];
 				$filenpath = $result_row[4];
 		?>
         	 <tr valign="top">			
@@ -80,7 +180,7 @@ function saveDownload(id)
 					?>
 			</td>
                         <td>
-            	            <a href="media.php?id=<?php echo $mediaid;?>" target="_blank"><?php echo $filename;?></a> 
+            	            <a href="media.php?id=<?php echo $mediaid;?>" target="_blank"><?php echo $titlename;?></a> 
                         </td>
                         <td>
             	            <a href="<?php echo $filenpath;?>" target="_blank" onclick="javascript:saveDownload(<?php echo $result_row[4];?>);">Download</a>
