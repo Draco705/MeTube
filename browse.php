@@ -57,7 +57,11 @@ else
 
 <form action="browse.php" method="post">
 	<input name="channel" type="submit" class="button"  VALUE = "My channel" >
-</form></p>
+</form></p><br>
+
+<form action="browse.php" method="post">
+	<input type="submit" class="button"  VALUE = "Home" >
+</form></p> <br>
 
 <a href='media_upload.php'  style="color:#FF9900;">Upload File</a>
 <div id='upload_result'>
@@ -97,6 +101,9 @@ if(isset($_POST['channel'])) {
 	$username = $_SESSION['username'];
 	$query = "SELECT * FROM media WHERE username = '$username'"; 
 	$result = mysql_query( $query );
+	echo "<br>";
+	
+	echo "<b> My Channel </b>";
 	if (!$result){
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
