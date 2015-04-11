@@ -1,6 +1,4 @@
 <html>
-<<<<<<< HEAD
-
 <?php
 	session_start();
 	include_once "function.php";
@@ -11,8 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Media browse</title>
 <link rel="stylesheet" type="text/css" href="css/default.css" />
-<script type="text/javascript" src="js/jquery-latest.pack.js"></scrimpt>
-<script type="text/javascript">
+<script type="text/javascript" src="js/jquery-latest.pack.js">
 function saveDownload(id)
 {
 	$.post("media_download_process.php",
@@ -24,13 +21,8 @@ function saveDownload(id)
  	);
 } 
 </script>
-</head>
-
-=======
-<head>
 <link rel="stylesheet" type="text/css" href="css/default.css">
 </head>
->>>>>>> b7aef8d033f25d4da6910ae156a166e88a380e39
 <body>
 <img src="metube.jpg" alt="MeTube" style="width:340px;height:128px">
 
