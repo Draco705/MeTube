@@ -53,6 +53,10 @@ else
 
 <form action="receive_msg.php" method="post">
 	<input type="submit" class="button"  VALUE = "Message Inbox" >
+</form></p> <br>
+
+<form action="browse.php" method="post">
+	<input name="channel" type="submit" class="button"  VALUE = "My channel" >
 </form></p>
 
 <a href='media_upload.php'  style="color:#FF9900;">Upload File</a>
@@ -85,7 +89,20 @@ else
 </form>
 
 
+
+
 <?php
+
+if(isset($_POST['channel'])) {
+	$username = $_SESSION['username'];
+	$query = "SELECT * FROM media WHERE username = '$username'"; 
+	$result = mysql_query( $query );
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+}
+
+else {
 
 if(isset($_POST['submit'])) {
 	
@@ -158,7 +175,9 @@ else {
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
 }
+}
 ?>
+
 
 
     <table width="50%" cellpadding="0" cellspacing="0">
