@@ -1,4 +1,5 @@
 <html>
+<<<<<<< HEAD
 
 <?php
 	session_start();
@@ -25,6 +26,11 @@ function saveDownload(id)
 </script>
 </head>
 
+=======
+<head>
+<link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
+>>>>>>> b7aef8d033f25d4da6910ae156a166e88a380e39
 <body>
 <img src="metube.jpg" alt="MeTube" style="width:340px;height:128px">
 
