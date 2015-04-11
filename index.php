@@ -1,4 +1,7 @@
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
 <body>
 <img src="metube.jpg" alt="MeTube" style="width:340px;height:128px">
 

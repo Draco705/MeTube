@@ -1,5 +1,9 @@
 /* You can implement your own css code*/
 
+body{
+	background-color: #FF9842;
+}
+
 #passwd_result{
 	background:#FF9900;
 	color:#FFFFFF;
