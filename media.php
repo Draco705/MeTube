@@ -52,36 +52,88 @@ if(isset($_GET['id'])) {
 <embed type="application/x-mplayer2" src="<?php echo $filepath;  ?>" name="MediaPlayer" width=320 height=240></embed>
 
 </object> 
-            
+      
+      
 <?php
 	}
+	?>
+	<?php
+	$media = $_GET['id'];
+	$query = "SELECT * FROM comment WHERE mediaid = '$media'";
+	$result1 = mysql_query($query);
+	?>
+	
+	<br><br>
+	<form action="browse.php" method="post">
+	<input type="submit" class="button"  VALUE = "Home" >
+</form></p>
+	
+	<h3> Comments </h3>
+	<table  cellpadding="0" cellspacing="0">
+    
+	<tr>
+	
+		<?php
+			while ($result_row = mysql_fetch_row($result1)) //filename, username, type, mediaid, path
+			{ 
+				$id = $result_row[0];
+				$comment = $result_row[1];
+				$user = $result_row[2];
+	            $time = $result_row[4];
+		?>
+        	 <tr valign="top">			
+			<td>
+					<?php 
+						echo "<i><b>".$user." (</b></i>".$time."):&nbsp;";
+					?>
+			</td>
+			<td>
+					<?php
+						echo "&nbsp".$comment;
+					?>	
+            </td>
+            <td>
+					<?php
+						//echo "<i>   on  ".$time."</i>";
+					?>	
+            </td>
+           
+		</tr>
+        	<?php
+			}
+		?>
+	</table>
+<?php	
 }
  
 
 else
 {
 	?>
-<meta http-equiv="refresh" content="0;url=browse.php">
+  <meta http-equiv="refresh" content="10;url=browse.php"> 
 <?php
- if(isset($_POST['submit'])) {
-	  //$path = $_GET['path'];
-	  $comment = $_POST['comment'];
-			$result = mysql_query("INSERT into comment values (NULL,'$comment','$username')");
-			//$row = mysql_fetch_row($result);
-			
-		}
-?>	
+ 
+ }
 
-<?php
-}
 ?>
 
-<h4> Comments </h4>
-<form method="post" action="media.php" > 
+
+<form method="post" action="" > 
 <textarea rows="5" cols="50" name="comment" placeholder="Write your comments here..">
 </textarea> <br>
 <input value="submit" name="submit" type="submit" /> 
 </form>
+
+<?php
+if(isset($_POST['submit'])) {
+	  //$path = $_GET['path'];
+	  $mediaid = $_GET['id'];
+	  $comment = $_POST['comment'];
+			$result = mysql_query("INSERT into comment values (NULL,'$comment','$username','$mediaid',NOW())");
+			//$row = mysql_fetch_row($result);
+			
+		}
+?>		
 
 </body>
 </html>
