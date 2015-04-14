@@ -11,6 +11,7 @@
 <title>Media</title>
 <script src="Scripts/AC_ActiveX.js" type="text/javascript"></script>
 <script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/default.css">
 </head>
 
 <body>
