@@ -28,7 +28,7 @@ if(!file_exists($dirfile))
 	  
 	  if(file_exists($upfile))
 	  {
-	  	//$result="5"; //The file has been uploaded.
+	  	$result="5"; //The file has been uploaded.
 	  }
 	  else{
 			if(is_uploaded_file($_FILES["file"]["tmp_name"]))
