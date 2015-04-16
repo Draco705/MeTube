@@ -157,6 +157,7 @@ if(isset($_POST['submit'])) {
 if(isset($_POST['fav'])) {
 	$mediaaid = $_GET['id'];
 	$result = mysql_query("INSERT into favorites values (NULL,'$filename','$mediaaid','$title','$username','$filepath')");
+	echo $title." added to favorites list! ";
 }
 ?>		
 
