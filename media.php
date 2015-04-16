@@ -27,6 +27,8 @@ if(isset($_GET['id'])) {
 	$filename=$result_row[0];   ////0, 4, 2
 	$filepath=$result_row[4]; 
 	$type=$result_row[2];
+	$title=$result_row[5];
+	
 	if(substr($type,0,5)=="image") //view image
 	{
 	/*	echo "Viewing Picture:";
@@ -79,6 +81,10 @@ if(isset($_GET['id'])) {
 	<br><br>
 	<form action="browse.php" method="post">
 	<input type="submit" class="button"  VALUE = "Home" >
+</form></p>
+
+<form action="" method="post">
+	<input name="fav" type="submit" class="button"  VALUE = "Add to favourite list" >
 </form></p>
 	
 	<h3> Comments </h3>
@@ -146,6 +152,12 @@ if(isset($_POST['submit'])) {
 			//$row = mysql_fetch_row($result);
 			
 		}
+		
+	
+if(isset($_POST['fav'])) {
+	$mediaaid = $_GET['id'];
+	$result = mysql_query("INSERT into favorites values (NULL,'$filename','$mediaaid','$title','$username','$filepath')");
+}
 ?>		
 
 </body>

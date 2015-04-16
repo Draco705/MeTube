@@ -75,17 +75,17 @@ function upload_error($result)
 	case 1:
 		return "UPLOAD_ERR_INI_SIZE";
 	case 2:
-		return "UPLOAD_ERR_FORM_SIZE";
+		return "Error: File is too large";
 	case 3:
 		return "UPLOAD_ERR_PARTIAL";
 	case 4:
-		return "UPLOAD_ERR_NO_FILE";
+		return "Error: No file present";
 	case 5:
-		return "File has already been uploaded";
+		return "Error: File has already been uploaded";
 	case 6:
-		return  "Failed to move file from temporary directory";
+		return  "Error: Failed to move file from temporary directory";
 	case 7:
-		return  "Upload file failed";
+		return  "Error: Upload file failed";
 	}
 } 
 
@@ -101,8 +101,8 @@ function update_info($email, $password1, $first, $last, $sex, $password3, $usern
 			if($update)
 			return 1; 
 					
-		} 
-		
+		}
+
 
 	
 ?>

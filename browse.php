@@ -59,6 +59,16 @@ else
 	<input name="channel" type="submit" class="button"  VALUE = "My channel" >
 </form></p><br>
 
+<form action="playlist.php" method="post">
+	<input type="submit" class="button"  VALUE = "Playlist" >
+</form></p> <br>
+
+
+<form action="browse.php" method="post">
+	<input name="fav" type="submit" class="button"  VALUE = "Favorite list" >
+</form></p> <br>
+
+
 <form action="browse.php" method="post">
 	<input type="submit" class="button"  VALUE = "Home" >
 </form></p> <br>
@@ -97,7 +107,48 @@ else
 
 <?php
 
-if(isset($_POST['channel'])) {
+if(isset($_POST['fav'])) {
+	$username = $_SESSION['username'];
+	$query = "SELECT * FROM favorites WHERE username = '$username'";
+	$result = mysql_query($query);
+	
+	?>
+	
+	 <table width="50%" cellpadding="0" cellspacing="0">
+	
+	<td><h4> id </h4></td>
+	<td><h4> Name </h4></td>
+	
+		<?php
+			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path
+			{ 
+				$mediaid = $result_row[2];
+				$titlename = $result_row[3];
+				$filenpath = $result_row[5];
+		?>
+        	 <tr valign="top">			
+			<td>
+					<?php 
+						echo $mediaid;  //mediaid
+					?>
+			</td>
+                        <td>
+            	            <a href="media.php?id=<?php echo $mediaid;?>" target="_blank"><?php echo $titlename;?></a> 
+                        </td>
+                        <td>
+            	            <a href="<?php echo $filenpath;?>" target="_blank" onclick="javascript:saveDownload(<?php echo $result_row[4];?>);">Download</a>
+                        </td>
+		</tr>
+        	<?php
+			}
+		?>
+	</table>
+
+<?php	
+}
+
+else {
+ if(isset($_POST['channel'])) {
 	$username = $_SESSION['username'];
 	$query = "SELECT * FROM media WHERE username = '$username'"; 
 	$result = mysql_query( $query );
@@ -217,5 +268,8 @@ else {
 		?>
 	</table>
 	   </div>
+<?php
+}
+?>
 </body>
 </html>
