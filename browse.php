@@ -60,7 +60,7 @@ else
 </form></p><br>
 
 <form action="playlist.php" method="post">
-	<input type="submit" class="button"  VALUE = "Playlist" >
+	<input type="submit" class="button"  VALUE = "My Playlist" >
 </form></p> <br>
 
 
@@ -133,7 +133,7 @@ if(isset($_POST['fav'])) {
 					?>
 			</td>
                         <td>
-            	            <a href="media.php?id=<?php echo $mediaid;?>" target="_blank"><?php echo $titlename;?></a> 
+            	            <a href="media.php?id=<?php echo $mediaid;?>" ><?php echo $titlename;?></a> 
                         </td>
                         <td>
             	            <a href="<?php echo $filenpath;?>" target="_blank" onclick="javascript:saveDownload(<?php echo $result_row[4];?>);">Download</a>

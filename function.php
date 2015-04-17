@@ -102,6 +102,31 @@ function update_info($email, $password1, $first, $last, $sex, $password3, $usern
 			return 1; 
 					
 		}
+		
+		
+function playlist_exist_check ($username, $playlist){
+	$query = "select * from playlist where username='$username' and name='$playlist'";
+	$result = mysql_query( $query );
+	if (!$result){
+		die ("playlist_exist_check() failed. Could not query the database: <br />". mysql_error());
+	}	
+	else {
+		$row = mysql_fetch_assoc($result);
+		if($row == 0){
+			$query = "insert into playlist values (NULL,'$playlist','$username')";
+			//echo "insert query:" . $query;
+			$insert = mysql_query( $query );
+			if($insert)
+			return 1; 
+			else
+				die ("Could not insert into the database: <br />". mysql_error());		
+		} 
+		 
+		else{
+			return 2;
+		}
+	}
+}		
 
 
 	
