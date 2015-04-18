@@ -30,6 +30,7 @@ if (isset($_SESSION['username']))
 else
 	header('Refresh :0;index.php');?>
 <body>
+<img src="metube.jpg">
 <h1>Welcome <?php echo $_SESSION['username'];?> </h1> 
  
  
