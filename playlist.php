@@ -47,8 +47,27 @@ if(isset($_POST['playsubmit'])) {
 ?>
 
 <?php
-$query = "SELECT * FROM playlist WHERE username='$username'"; 
-	$result = mysql_query( $query );
+$query = mysql_query("SELECT * FROM playlist WHERE username='$username'"); // Run your query
+?>
+<form action="" method="post" >
+<?php
+echo "Playlist: ".'<select name="playdropdown">';
+
+while ($row = mysql_fetch_array($query)) {
+   echo "<option  value='" . $row[1] . "'  >" . $row[1] . "</option>"; 
+}
+echo '</select>';
+?>
+&nbsp;&nbsp;
+<input name="viewsubmit" type="submit" class="button"  VALUE = "View Playlist" >
+</form>
+
+<?php
+	if(isset($_POST['viewsubmit'])) {
+	  //$mediaid = $_GET['id'];
+	  $playname = $_POST['playdropdown'];
+			$result = mysql_query("SELECT * FROM playlist WHERE username='$username' and name='$playname'");
+		
 	if (!$result){
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
@@ -65,15 +84,17 @@ $query = "SELECT * FROM playlist WHERE username='$username'";
         	 <tr valign="top">			
 			<td>
 					<?php 
-						echo $playname; 
+						//echo "Playlist: ".$playname;
+						
 					?>
 			</td>
 			<?php
 			$query1 = "SELECT * FROM playlist_media WHERE username='$username' and playlist_name='$playname'"; 
 			$result1 = mysql_query( $query1 );
 	
+	$i=0;
                      while ($result_row = mysql_fetch_row($result1)) //filename, username, type, mediaid, path 
-					 {
+					 {    $i++;
 						 $play_media_id = $result_row[0];
 						 $play_media_title = $result_row[4];
 						 $play_media_path = $result_row[6];
@@ -81,6 +102,11 @@ $query = "SELECT * FROM playlist WHERE username='$username'";
 						 ?>
 						 <tr valign="top">
 						 
+						 <td>
+						 <?php
+						 echo $i;
+						 ?>
+						 </td>
 							<td>
 								
 									
@@ -97,7 +123,10 @@ $query = "SELECT * FROM playlist WHERE username='$username'";
 
 		?>
 	</table>
-
+	<?php
+	}
+	?>
+	
 	
 </body>
 </html>
