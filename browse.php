@@ -87,7 +87,7 @@ else
 
 <form action="browse.php" method="post">
     Search:  <input type="text" name="search" style="width: 500px";>
-	<input name="submit" type="submit" value="Search"> <br><br>
+	<input name="submit" type="submit" class="button" value="Search"> <br><br>
 </form>
 
  <div style="background:#339900;color:#FFFFFF; width:150px;">Uploaded Media</div> <br> 
@@ -100,7 +100,7 @@ else
   <option value="image">Image</option>
   <option value="other">Other</option>
 </select>
-<input name="submit" type="submit" value="Submit">
+<input name="submit" type="submit" class="button" value="Submit">
 </form>
 
 

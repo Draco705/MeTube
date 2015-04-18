@@ -1,6 +1,9 @@
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
 <body>
-
+<h1>Update Information</h1>
 
 <p> For updating information, you need to enter your user name and password </p>
 
@@ -86,12 +89,12 @@ if(isset($_POST['submit'])) {
 
 
 <form action="update.php" method="post">
-    Username*:  <input type="text" name="username" required> <br>
+    Username*:  <input type="text" name="username" required> <br><br>
     Current password* : <input type="password" name="password3" required> <br>
 	
 	<p> KEY INFORMATION </p>
     Email: <input type="text" name="email"> <br><br> 
-	New Password: <input type="password" name="password1"> <br>
+	New Password: <input type="password" name="password1"> <br><br>
 	Confirm Password: <input type="password" name="password2"> <br><br>
 
 <br><br>
@@ -101,7 +104,13 @@ if(isset($_POST['submit'])) {
 	Gender: <input type="radio" name="sex" value="male">Male &nbsp;&nbsp;&nbsp;
             <input type="radio" name="sex" value="female">Female <br><br>
 	Birth date: <input type="date" name="birth"> <br><br>
-	<input name="submit" type="submit" value="Submit">
+	<input name="submit" type="submit" class="button" value="Submit">
+
+</form>
+
+<br>
+<form action="browse.php" method="post">
+	<input type="submit" class="button" VALUE="Cancel">
 </form>
 
 <?php
