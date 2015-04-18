@@ -32,8 +32,8 @@ else
 <body>
 <img src="metube.jpg">
 <h1>Welcome <?php echo $_SESSION['username'];?> </h1> 
- 
- <div id="nav">
+
+<div id="nav">
 <form action="update.php" method="post">
 	<input type="submit" class="button"  VALUE = "Update Info" >
 </form></p>
@@ -73,7 +73,7 @@ else
 <form action="browse.php" method="post">
 	<input type="submit" class="button"  VALUE = "Home" >
 </form></p> <br>
-</nav>
+</div>
 <a href='media_upload.php'  style="color:#FF9900;">Upload File</a>
 <div id='upload_result'>
 <?php 

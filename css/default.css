@@ -41,6 +41,6 @@ p{
 	margin-right:60%;
 }
 #nav{
-	float: left;
-	padding: 10px;
+	float: right;
+	margin-right: 100px;
 }
