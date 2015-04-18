@@ -1,5 +1,7 @@
 <html>
 <?php
+
+
 	session_start();
 	include_once "function.php";
 	
@@ -110,7 +112,7 @@ else {
 
 
 
-<div style="background:#339900;color:#FFFFFF; width:150px;">Uploaded Media</div>
+<div style="background:#339900;color:#FFFFFF; width:50px;">Media</div>
 
 <form action="index.php" method="post">
 	Category: <select name="dropdown">

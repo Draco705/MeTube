@@ -30,10 +30,6 @@ if(isset($_POST['submit'])) {
 	<form method="post" action="<?php echo "login.php"; ?>">
 
 	<table width="100%">
-	    <tr>
-			<td  width="20%">Email:</td>
-			<td width="80%"><input class="text"  type="text" name="email"><br /></td>
-		</tr>
 		<tr>
 			<td  width="20%">Username:</td>
 			<td width="80%"><input class="text"  type="text" name="username"><br /></td>
