@@ -4,10 +4,32 @@ body{
 	background-color: #FF9842;
 }
 
+form{
+	font-family: "Arial", Helvetica, sans-serif;
+}
+
+h1{
+	font-family: "Arial", Helvetica, sans-serif;
+	text-align: center;
+}
+
+a{
+	font-family: "Arial", Helvetica, sans-serif;
+}
+
+div{
+	font-family: "Arial", Helvetica, sans-serif;
+}
+
+p{
+	font-family: "Arial", Helvetica, sans-serif;
+}
+
 #passwd_result{
 	background:#FF9900;
 	color:#FFFFFF;
 	font-weight:bold;
+	font-family: "Arial", Helvetica, sans-serif;
 	margin-right:60%;
 }
 
@@ -15,5 +37,6 @@ body{
 	background:#CC3300;
 	color:#FFFFFF;
 	font-weight:bold;
+	font-family: "Arial", Helvetica, sans-serif;
 	margin-right:60%;
 }

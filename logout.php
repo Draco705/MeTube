@@ -1,5 +1,11 @@
 <html>
+<head>
+	<title>MeTube Logout</title>
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
 <body>
+	<img src="metube.jpg">
+	<br><br><br><br><br><br><br>
 	<h1 align="center"> You have been logged out and will be redirected </h1>
 <?php
    session_start();
@@ -8,9 +14,7 @@
 
    session_destroy();
 
-   echo "Session is closed.";
-
-   header('Refresh: 5;index.php');
+   header('Refresh: 3;index.php');
 ?>
 </body>
 </html>
