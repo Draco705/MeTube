@@ -40,3 +40,7 @@ p{
 	font-family: "Arial", Helvetica, sans-serif;
 	margin-right:60%;
 }
+#nav{
+	float: left;
+	padding: 10px;
+}
