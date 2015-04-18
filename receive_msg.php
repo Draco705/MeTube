@@ -1,4 +1,7 @@
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
 <body>
 
 <?php
@@ -11,7 +14,15 @@ $name = $_SESSION['username'];
 ?>
 
 <h1> Message Inbox </h1>	
-
+<br>
+<form action="browse.php" method="post">
+	<input type="submit" class="button" VALUE="Home">
+</form>
+<br>
+<form action="message.php" method="post">
+	<input type="submit" class="button" VALUE = "New Message">
+</form>
+<br>
 <?php
 
 	$query = "SELECT * from messages WHERE sendto='$name' order by messageid desc"; 
