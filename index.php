@@ -3,6 +3,12 @@
 
 
 	session_start();
+	
+	if(isset($_SESSION['username'])) {
+	 session_unset();
+
+   session_destroy();
+}
 	include_once "function.php";
 	
 ?>
@@ -112,7 +118,7 @@ else {
 
 
 
-<div style="background:#339900;color:#FFFFFF; width:50px;">Media</div>
+<div style="background:#339900;color:#FFFFFF; width:50px;"><h3>Media<h3></div>
 
 <form action="index.php" method="post">
 	Category: <select name="dropdown">
@@ -137,11 +143,27 @@ else {
 				$mediaid = $result_row[3];
 				$titlename = $result_row[5];
 				$filenpath = $result_row[4];
+				$filetype = $result_row[2];
 		?>
         	 <tr valign="top">			
 			<td>
 					<?php 
-						echo $mediaid;  //mediaid
+						//echo $mediaid;  //mediaid
+						if(substr($filetype,0,5) == 'image'){
+							?>
+							<img src="picture.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+						else if(substr($filetype,0,5) == 'audio') {
+							?>
+							<img src="audio.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+						else if(substr($filetype,0,5) == 'video'){
+							?>
+							<img src="video.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
 					?>
 			</td>
                         <td>

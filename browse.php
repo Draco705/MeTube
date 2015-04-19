@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
+
+
 	session_start();
 	include_once "function.php";
 	
@@ -30,7 +32,7 @@ if (isset($_SESSION['username']))
 else
 	header('Refresh :0;index.php');?>
 <body>
-<img src="metube.jpg">
+<img src="metube.jpg" alt="MeTube" style="width:340px;height:128px">
 <h1>Welcome <?php echo $_SESSION['username'];?> </h1> 
 
 <div id="nav">
@@ -90,7 +92,8 @@ else
 	<input name="submit" type="submit" class="button" value="Search"> <br><br>
 </form>
 
- <div style="background:#339900;color:#FFFFFF; width:150px;">Uploaded Media</div> <br> 
+ <div style="background:#339900;color:#FFFFFF; width:80px;"> <h3>Media<h3>
+ </div> <br> 
 	
 	<form action="browse.php" method="post">
 	Category: <select name="dropdown">
@@ -116,9 +119,7 @@ if(isset($_POST['fav'])) {
 	?>
 	
 	 <table width="50%" cellpadding="0" cellspacing="0">
-	
-	<td><h4> id </h4></td>
-	<td><h4> Name </h4></td>
+	<br>
 	
 		<?php
 			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path
@@ -126,12 +127,28 @@ if(isset($_POST['fav'])) {
 				$mediaid = $result_row[2];
 				$titlename = $result_row[3];
 				$filenpath = $result_row[5];
+				$filetype = $result_row[6];
 		?>
         	 <tr valign="top">			
 			<td>
 					<?php 
-						echo $mediaid;  //mediaid
-					?>
+						//echo $mediaid;  //mediaid
+						if(substr($filetype,0,5) == 'image'){
+							?>
+							<img src="picture.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+						else if(substr($filetype,0,5) == 'audio') {
+							?>
+							<img src="audio.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+						else if(substr($filetype,0,5) == 'video'){
+							?>
+							<img src="video.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+					?>	
 			</td>
                         <td>
             	            <a href="media.php?id=<?php echo $mediaid;?>" ><?php echo $titlename;?></a> 
@@ -241,20 +258,34 @@ else {
 
     <table width="50%" cellpadding="0" cellspacing="0">
 	
-	<td><h4> id </h4></td>
-	<td><h4> Name </h4></td>
-	
+	<br>
 		<?php
 			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path
 			{ 
 				$mediaid = $result_row[3];
 				$titlename = $result_row[5];
 				$filenpath = $result_row[4];
+				$filetype = $result_row[2];
 		?>
         	 <tr valign="top">			
 			<td>
 					<?php 
-						echo $mediaid;  //mediaid
+						//echo $mediaid;  //mediaid
+						if(substr($filetype,0,5) == 'image'){
+							?>
+							<img src="picture.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+						else if(substr($filetype,0,5) == 'audio') {
+							?>
+							<img src="audio.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
+						else if(substr($filetype,0,5) == 'video'){
+							?>
+							<img src="video.png" alt="Image" style="width:34px;height:28px">
+							<?php
+						}
 					?>
 			</td>
                         <td>
