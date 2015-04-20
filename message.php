@@ -4,10 +4,23 @@
 </head>
 <body>
 
+
+
 <?php
+
 session_start();
 include_once "function.php";
 
+if(!isset($_SESSION['username'])) {
+	echo "User not available";
+header('Refresh :2;index.php');
+?>
+<form action="index.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+	<?php
+exit;
+}
 
 if(isset($_POST['submit'])) {
 	
@@ -26,6 +39,10 @@ if(isset($_POST['submit'])) {
 
 
 ?>
+
+<form action="browse.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
 
 <form action="message.php" method="post">
 <h1> SEND MESSAGE </h1>

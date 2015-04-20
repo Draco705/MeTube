@@ -36,15 +36,17 @@ function user_pass_check($username, $password)
 {
 	
 	$query = "select * from account where username='$username'";
-	echo  $query;
+	//echo  $query;
 	$result = mysql_query( $query );
-		
-	if (!$result)
+		if (!$result)
 	{
 	   die ("user_pass_check() failed. Could not query the database: <br />". mysql_error());
 	}
-	else{
 		$row = mysql_fetch_row($result);
+		if($row == 0){
+		return 1; }
+	else{
+		
 		if(strcmp($row[2],$password))
 			return 2; //wrong password
 		else 

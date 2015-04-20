@@ -27,7 +27,13 @@ if(isset($_POST['submit'])) {
 	}
 }
 
+
 ?>
+
+<form action="index.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+
 <form action="register.php" method="post">
     <h1> MeTube User Registration </h1>
 	<h4> Account Information </h4>

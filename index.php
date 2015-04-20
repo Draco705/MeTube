@@ -45,12 +45,68 @@ function saveDownload(id)
 <br><br>
 
 <form action="index.php" method="post">
-Search:  <input type="text" name="search" style="width: 500px";>
+Search:  <input type="text" name="search" style="width: 500px" placeholder="media....";>
 	<input name="submit" type="submit" value="Search"> <br><br>
+</form>
+<br>
+
+<?php
+$query = mysql_query("SELECT * FROM account"); // Run your query
+?>
+<form action="" method="post" >
+<?php
+echo "<b>Channel: </b>".'<select name="channeldropdown">';
+echo "<option value='None'>".None."</option>"; 
+while ($row = mysql_fetch_array($query)) {
+   echo "<option value='" . $row[1] . "'>" . $row[1] . "</option>"; 
+}
+echo '</select>';
+?>
+&nbsp;&nbsp;
+<input name="channelsubmit" type="submit" class="button"  VALUE = "View Channel" >
+</form>
+
+
+
+
+ <div style="background:#DF0101;color:#FFFFFF; width:200px;"> <h2>MeTube Media<h2>
+ </div> 
+ <img src="media.jpg" alt="Media" style="width:100px;height:100px">
+
+ 
+<form action="index.php" method="post">
+	Category: <select name="dropdown">
+  <option selected="selected"> All </option>
+  <option value="audio">Audio</option>
+  <option value="video">Video</option>
+  <option value="image">Image</option>
+  <option value="other">Other</option>
+</select>
+<input name="submit" type="submit" value="Submit">
 </form>
 
 <?php
 
+if(isset($_POST['channelsubmit'])) {
+	$username = $_POST['channeldropdown'];
+	if($username == "None") {
+		$query = "SELECT * FROM media";
+	}
+	else {
+	$query = "SELECT * FROM media WHERE username = '$username'"; 
+	}
+	$result = mysql_query( $query );
+	echo "<br>";
+	echo "<b>".$username."'s Channel </b>";
+	
+	if (!$result){
+	   die ("Could not query the media table in the database: <br />". mysql_error());
+	}
+	
+	echo "<br>";
+}
+
+else {
 if(isset($_POST['submit'])) {
 	
 	if(isset($_POST['search'])) {
@@ -114,28 +170,12 @@ else {
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
 }
+}
 ?>
 
 
-
-<div style="background:#339900;color:#FFFFFF; width:50px;"><h3>Media<h3></div>
-
-<form action="index.php" method="post">
-	Category: <select name="dropdown">
-  <option selected="selected"> All </option>
-  <option value="audio">Audio</option>
-  <option value="video">Video</option>
-  <option value="image">Image</option>
-  <option value="other">Other</option>
-</select>
-<input name="submit" type="submit" value="Submit">
-</form>
-
-
 	<table width="50%" cellpadding="0" cellspacing="0">
-	
-	<td><h4> id </h4></td>
-	<td><h4> Name </h4></td>
+	<br>
 	
 		<?php
 			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path

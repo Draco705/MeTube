@@ -5,19 +5,36 @@
 <body>
 
 <?php
+
+
 session_start();
 
 include_once "function.php";
+
+if(!isset($_SESSION['username'])) {
+	echo "User not available";
+header('Refresh :2;index.php');
+?>
+<form action="index.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+	<?php
+exit;
+}
 
 $name = $_SESSION['username'];
 
 ?>
 
+<form action="browse.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+
 <h1> Message Inbox </h1>	
 <br>
-<form action="browse.php" method="post">
-	<input type="submit" class="button" VALUE="Home">
-</form>
+
+
+
 <br>
 <form action="message.php" method="post">
 	<input type="submit" class="button" VALUE = "New Message">
@@ -32,14 +49,15 @@ $name = $_SESSION['username'];
 	}
 ?>	
 
-<table width="50%" cellpadding="0" cellspacing="0" border="3">
+<table width="100%" cellpadding="5" cellspacing="0" border="3">
     
 	<tr>
 		<td align="center"><h4> id </h4></td>
 		<td align="center"><h4> Subject </h4></td>
 		<td align="center"><h4> Message </h4></td>
-		<td align="center"><h4> From user </h4></td>
+		<td align="center"><h4> Sent From </h4></td>
 		<td align="center"><h4> Received on </h4></td>
+	</tr>
 		<?php
 			while ($result_row = mysql_fetch_row($result)) //filename, username, type, mediaid, path
 			{ 

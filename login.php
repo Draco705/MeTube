@@ -26,6 +26,10 @@ if(isset($_POST['submit'])) {
  
 ?>
 
+<form action="index.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+
 
 	<form method="post" action="<?php echo "login.php"; ?>">
 
