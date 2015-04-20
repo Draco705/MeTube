@@ -45,8 +45,13 @@ p{
 	margin-right:60%;
 }
 #nav{
-	float: right;
-	margin-right: 100px;
+	float: left;
+	margin-right: 200px;
+}
+
+#medias{
+	float: left;
+	margin-left: 0px;
 }
 
 .button {

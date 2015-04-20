@@ -104,7 +104,7 @@ echo '</select>';
 
 
 </div>
-<a href='media_upload.php'  style="color:#FF9900;">Upload File</a>
+<a href='media_upload.php'  style="color:#839cd7;">Upload File</a>
 <div id='upload_result'>
 <?php 
 	if(isset($_REQUEST['result']) && $_REQUEST['result']!=0)
@@ -115,6 +115,7 @@ echo '</select>';
 </div>
 <br/><br/>
 
+<div id="medias">
 <form action="browse.php" method="post">
     Search:  <input type="text" name="search" style="width: 500px" placeholder="media....";>
 	<input name="submit" type="submit" class="button" value="Search"> <br><br>
@@ -346,6 +347,7 @@ else {
 		?>
 	</table>
 	   </div>
+</div>
 <?php
 }
 ?>
