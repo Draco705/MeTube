@@ -76,7 +76,7 @@ else
 	<input type="submit" class="button"  VALUE = "Home" >
 </form></p> <br>
 </div>
-<a href='media_upload.php'  style="color:#FF9900;">Upload File</a>
+<a href='media_upload.php'  style="color:#839cd7;">Upload File</a>
 <div id='upload_result'>
 <?php 
 	if(isset($_REQUEST['result']) && $_REQUEST['result']!=0)
@@ -87,6 +87,7 @@ else
 </div>
 <br/><br/>
 
+<div id="medias">
 <form action="browse.php" method="post">
     Search:  <input type="text" name="search" style="width: 500px";>
 	<input name="submit" type="submit" class="button" value="Search"> <br><br>
@@ -300,6 +301,7 @@ else {
 		?>
 	</table>
 	   </div>
+</div>
 <?php
 }
 ?>
