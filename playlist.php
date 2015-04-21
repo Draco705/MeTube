@@ -6,25 +6,39 @@
 
 
 <?php
+
+
 session_start();
 
 include_once "function.php";
+
+if(!isset($_SESSION['username'])) {
+	echo "User not available";
+header('Refresh :2;index.php');
+?>
+<form action="index.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+	<?php
+exit;
+}
 
 $username = $_SESSION['username'];
 
 ?>
 
+<form action="browse.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+
 <h1> <?php echo $username; ?> MeTube Playlist  </h1>
+<br>
 
-
-<form action="browse.php" method="post"> 
-	<input name="home" type="submit" value="Home">
-</form>
 
 <form action="playlist.php" method="post">
     <input name="playname" type="text" placeholder="Enter new playlist name" required>
 	<input name="playsubmit" type="submit" class="button"  VALUE = "Create" >
-</form></p> <br>
+</form></p> 
 
 
 

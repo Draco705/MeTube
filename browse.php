@@ -2,6 +2,7 @@
 <?php
 
 
+
 	session_start();
 	include_once "function.php";
 	
@@ -26,14 +27,26 @@ function saveDownload(id)
 </script>
 </head>
 <?php
-if (isset($_SESSION['username']))
-{}
-	//echo "Username available";
-else
-	header('Refresh :0;index.php');?>
+ 
+if(!isset($_SESSION['username'])) {
+	echo "User not available";
+header('Refresh :2;index.php');
+?>
+<form action="index.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p>
+	<?php
+exit;
+}
+?>
+
 <body>
 <img src="metube.jpg" alt="MeTube" style="width:340px;height:128px">
-<h1>Welcome <?php echo $_SESSION['username'];?> </h1> 
+<h1>Welcome <?php echo $_SESSION['username'];?> </h1>
+
+<form action="browse.php" method="post">
+	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
+	</form></p> 
 
 <div id="nav">
 <form action="update.php" method="post">
@@ -48,9 +61,11 @@ else
 
 <br>
 
+
 <form action="logout.php" method="post">
 	<input type="submit" class="button"  VALUE = "Logout" >
 </form></p>
+
 
 <br>
 
@@ -58,9 +73,25 @@ else
 	<input type="submit" class="button"  VALUE = "Message Inbox" >
 </form></p> <br>
 
-<form action="browse.php" method="post">
-	<input name="channel" type="submit" class="button"  VALUE = "My channel" >
-</form></p><br>
+
+<?php
+$username = $_SESSION['username'];
+$query = mysql_query("SELECT * FROM account"); // Run your query
+?>
+<form action="" method="post" >
+<?php
+echo "<b>Channel: </b>".'<select name="channeldropdown">';
+echo "<option value='None'>".None."</option>"; 
+while ($row = mysql_fetch_array($query)) {
+   echo "<option value='" . $row[1] . "'>" . $row[1] . "</option>"; 
+}
+echo '</select>';
+?>
+&nbsp;&nbsp;
+<input name="channelsubmit" type="submit" class="button"  VALUE = "View Channel" >
+</form>
+
+<br>
 
 <form action="playlist.php" method="post">
 	<input type="submit" class="button"  VALUE = "My Playlist" >
@@ -72,9 +103,6 @@ else
 </form></p> <br>
 
 
-<form action="browse.php" method="post">
-	<input type="submit" class="button"  VALUE = "Home" >
-</form></p> <br>
 </div>
 <a href='media_upload.php'  style="color:#839cd7;">Upload File</a>
 <div id='upload_result'>
@@ -89,12 +117,13 @@ else
 
 <div id="medias">
 <form action="browse.php" method="post">
-    Search:  <input type="text" name="search" style="width: 500px";>
+    Search:  <input type="text" name="search" style="width: 500px" placeholder="media....";>
 	<input name="submit" type="submit" class="button" value="Search"> <br><br>
 </form>
 
- <div style="background:#339900;color:#FFFFFF; width:80px;"> <h3>Media<h3>
- </div> <br> 
+ <div style="background:#DF0101;color:#FFFFFF; width:200px;"> <h2>MeTube Media<h2>
+ </div> 
+ <img src="media.jpg" alt="Media" style="width:100px;height:100px">
 	
 	<form action="browse.php" method="post">
 	Category: <select name="dropdown">
@@ -149,13 +178,18 @@ if(isset($_POST['fav'])) {
 							<img src="video.png" alt="Image" style="width:34px;height:28px">
 							<?php
 						}
+						else {
+							?>
+							<img src="file.png" alt="Other" style="width:34px;height:28px">
+							<?php
+						}
 					?>	
 			</td>
                         <td>
-            	            <a href="media.php?id=<?php echo $mediaid;?>" ><?php echo $titlename;?></a> 
+            	            <a href="media.php?id=<?php echo $mediaid;?>" target="_self" ><?php echo $titlename;?></a> 
                         </td>
                         <td>
-            	            <a href="<?php echo $filenpath;?>" target="_blank" onclick="javascript:saveDownload(<?php echo $result_row[4];?>);">Download</a>
+            	            <a href="<?php echo $filenpath;?>" download>Download</a>
                         </td>
 		</tr>
         	<?php
@@ -167,16 +201,22 @@ if(isset($_POST['fav'])) {
 }
 
 else {
- if(isset($_POST['channel'])) {
-	$username = $_SESSION['username'];
+ if(isset($_POST['channelsubmit'])) {
+	$username = $_POST['channeldropdown'];
+	if($username == "None") {
+		$query = "SELECT * FROM media";
+	}
+	else {
 	$query = "SELECT * FROM media WHERE username = '$username'"; 
+	}
 	$result = mysql_query( $query );
 	echo "<br>";
 	
-	echo "<b> My Channel </b>";
+	echo "<b>".$username."'s Channel </b>";
 	if (!$result){
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
+	echo "<br>";
 }
 
 else {
@@ -203,7 +243,9 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else {
+		
 		if($_POST['dropdown'] == "all") {
+			echo "<h3> All Media </h3>";
 		$query = "SELECT * FROM media"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -212,6 +254,7 @@ if(isset($_POST['submit'])) {
 	}
 		
 	if($_POST['dropdown'] == "audio") {
+		echo "<h3> Audio </h3>";
 		$query = "SELECT * FROM media WHERE type RLIKE 'audio'"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -220,6 +263,7 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else if($_POST['dropdown'] == "video") {
+		echo "<h3> Video </h3>";
 		$query = "SELECT * FROM media WHERE type RLIKE 'video'"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -228,6 +272,7 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else if($_POST['dropdown'] == "image") {
+		echo "<h3> Images </h3>";
 		$query = "SELECT * FROM media WHERE type RLIKE 'image'"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -236,6 +281,7 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else if($_POST['dropdown'] == "other") {
+		echo "<h3> Other </h3>";
 	$query = "SELECT * FROM media WHERE type NOT RLIKE 'image' AND type NOT RLIKE 'audio' AND type NOT RLIKE 'video'"; 
 	$result = mysql_query( $query );
 	if (!$result){
