@@ -130,6 +130,7 @@ if(isset($_POST['submit'])) {
 	
 	else {
 	if($_POST['dropdown'] == "audio") {
+		echo "<h3> Audio </h3>";
 		$query = "SELECT * FROM media WHERE type RLIKE 'audio'"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -138,6 +139,7 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else if($_POST['dropdown'] == "video") {
+		echo "<h3> Videos </h3>";
 		$query = "SELECT * FROM media WHERE type RLIKE 'video'"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -146,6 +148,7 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else if($_POST['dropdown'] == "image") {
+		echo "<h3> Pictures </h3>";
 		$query = "SELECT * FROM media WHERE type RLIKE 'image'"; 
 	$result = mysql_query( $query );
 	if (!$result){
@@ -154,12 +157,14 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else if($_POST['dropdown'] == "other") {
+		echo "<h3> Others </h3>";
 	$query = "SELECT * FROM media WHERE type NOT RLIKE 'image' AND type NOT RLIKE 'audio' AND type NOT RLIKE 'video'"; 
 	$result = mysql_query( $query );
 	if (!$result){
 	   die ("Could not query the media table in the database: <br />". mysql_error());
 	}
 	}
+	
 	}
 }
 
@@ -210,7 +215,7 @@ else {
             	            <a href="media.php?id=<?php echo $mediaid;?>" target="_blank"><?php echo $titlename;?></a> 
                         </td>
                         <td>
-            	            <a href="/uploads/$filenpath" target="_blank" onclick="javascript:saveDownload(<?php echo $result_row[4];?>);">Download</a>
+            	           <a href="<?php echo $filenpath;?>" target="_self" download>Download</a>
                         </td>
 		</tr>
         	<?php

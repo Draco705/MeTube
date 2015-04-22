@@ -30,7 +30,7 @@ function saveDownload(id)
  
 if(!isset($_SESSION['username'])) {
 	//echo "User not available";
-header('Refresh :2;index.php');
+header('Refresh :0;index.php');
 ?>
 <form action="index.php" method="post">
 	<input type="image" src="home.png" width="30px" height="30px" VALUE = "Home" >
