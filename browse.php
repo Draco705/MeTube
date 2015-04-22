@@ -29,7 +29,7 @@ function saveDownload(id)
 <?php
  
 if(!isset($_SESSION['username'])) {
-	echo "User not available";
+	//echo "User not available";
 header('Refresh :2;index.php');
 ?>
 <form action="index.php" method="post">
@@ -189,7 +189,7 @@ if(isset($_POST['fav'])) {
             	            <a href="media.php?id=<?php echo $mediaid;?>" target="_self" ><?php echo $titlename;?></a> 
                         </td>
                         <td>
-            	            <a href="<?php echo $filenpath;?>" download>Download</a>
+            	            <a href="<?php echo $filenpath;?>" target="_self" download>Download</a>
                         </td>
 		</tr>
         	<?php
@@ -339,7 +339,7 @@ else {
             	            <a href="media.php?id=<?php echo $mediaid;?>"><?php echo $titlename;?></a> 
                         </td>
                         <td>
-            	            <a href="<?php echo $filenpath;?>" target="_blank" onclick="javascript:saveDownload(<?php echo $result_row[4];?>);">Download</a>
+            	            <a href="<?php echo $filenpath;?>" target="_blank" download>Download</a>
                         </td>
 		</tr>
         	<?php
