@@ -42,10 +42,11 @@ if(!file_exists($dirfile))
 					
 					$title = $_POST['title'];
 					$description = $_POST['description'];
+					$keyword = $_POST['keyword'];
 					
 					//insert into media table
-					$insert = "insert into media(mediaid, filename,username,type, path, title, description)".
-							  "values(NULL,'". urlencode($_FILES["file"]["name"])."','$username','".$_FILES["file"]["type"]."', '$upfile','$title','$description')";
+					$insert = "insert into media(mediaid, filename,username,type, path, title, description, keyword)".
+							  "values(NULL,'". urlencode($_FILES["file"]["name"])."','$username','".$_FILES["file"]["type"]."', '$upfile','$title','$description','$keyword')";
 					$queryresult = mysql_query($insert)
 						  or die("Insert into Media error in media_upload_process.php " .mysql_error());
 					$result="0";

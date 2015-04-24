@@ -117,7 +117,7 @@ echo '</select>';
 
 <div id="medias">
 <form action="browse.php" method="post">
-    Search:  <input type="text" name="search" style="width: 500px" placeholder="media....";>
+    Search:  <input type="text" name="search" style="width: 500px" placeholder="Type the keyword to search....";>
 	<input name="submit" type="submit" class="button" value="Search"> <br><br>
 </form>
 
@@ -234,7 +234,7 @@ if(isset($_POST['submit'])) {
 	}
 	
 	else {
-	$query = "SELECT * FROM media WHERE title RLIKE '$search'"; 
+	$query = "SELECT * FROM media WHERE keyword RLIKE '$search'"; 
 	$result = mysql_query( $query );
 	if (!$result){
 	   die ("Could not query the media table in the database: <br />". mysql_error());

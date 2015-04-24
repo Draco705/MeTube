@@ -130,9 +130,29 @@ echo '</select>';
 									 <a href="media.php?id=<?php echo $media_id;?>" ><?php echo $play_media_title;?></a>
 								
 							</td>
+							
+							<td>
+								 <?php
+									$username = $_SESSION['username'];
+								?>
+									<form action="" method="post">
+									<input type="text" name="delete_id" value="<?php echo $play_media_id; ?>" style="display: none" >
+									&nbsp;&nbsp; <input type="submit" name="delete" value="Delete" >
+									</form>
+
+<?php
+					if(isset($_POST['delete'])) {
+					$delid = $_POST['delete_id']; 
+					$query = "DELETE FROM playlist_media WHERE id = '$delid'";
+					$result = mysql_query($query); 
+}
+			}
+			
+?>			
+							<td>	
 							</tr>
 							<?php
-					 }
+					 
 					 ?>
 		</tr>
         	<?php

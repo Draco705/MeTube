@@ -19,6 +19,7 @@ session_start();
    <input  name="file" type="file" class="button"  size="50" /> <br><br>
    
 Title*: <input type="text" name="title" required> <br><br>
+Keyword*: <input type="text" name="keyword" required> <br><br>
 Description:
 <textarea rows="5" cols="50" name="description" placeholder="Description about file">
 </textarea> <br>
